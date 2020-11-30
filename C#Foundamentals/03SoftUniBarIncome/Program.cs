@@ -22,7 +22,6 @@ namespace _03SoftUniBarIncome
             while((input = Console.ReadLine()) != "end of shift")
             {
                 Match currentOrderInfo = regex.Match(input);
-                Console.WriteLine(string.Join("here", currentOrderInfo.Groups[1]));
                 if (currentOrderInfo.Success)
                 {
                     name = currentOrderInfo.Groups[1].Value;
