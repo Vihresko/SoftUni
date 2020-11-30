@@ -1,2 +1,0 @@
-This is test folder.
-I succesfull move this folder.
