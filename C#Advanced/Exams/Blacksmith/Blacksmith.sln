@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blacksmith", "Blacksmith\Blacksmith.csproj", "{E0A2CD7D-ED94-44E8-98AC-7C05A2441FE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Armory", "Armory\Armory.csproj", "{FAD659A8-0FDF-4A95-ABDD-2DBED658E962}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0A2CD7D-ED94-44E8-98AC-7C05A2441FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0A2CD7D-ED94-44E8-98AC-7C05A2441FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0A2CD7D-ED94-44E8-98AC-7C05A2441FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0A2CD7D-ED94-44E8-98AC-7C05A2441FE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAD659A8-0FDF-4A95-ABDD-2DBED658E962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD659A8-0FDF-4A95-ABDD-2DBED658E962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD659A8-0FDF-4A95-ABDD-2DBED658E962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD659A8-0FDF-4A95-ABDD-2DBED658E962}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9DF6CD56-0FD5-4E3B-856E-D0A809BB1EE7}
+	EndGlobalSection
+EndGlobal
