@@ -6,7 +6,7 @@ namespace SMS.Services
     public interface IProductService
     {
         public (bool isValid, string errors) ValidateProductForm(ProductForm productForm);
-        public void CreateProduct(ProductForm productForm, string userId);
+        public void CreateProduct(ProductForm productForm);
 
         public ProductPrintModelHead ReturnAllProductsForPrint(string user);
 

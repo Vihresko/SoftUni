@@ -20,8 +20,9 @@ namespace SMS.Controllers
         
         public Response Details()
         {
-            var model = productService.ListAllProductsInCart(User.Id);
-            return View(model, "/Carts/Details");
+            var data = productService.ListAllProductsInCart(User.Id);
+            var modelForView = new {Model = data, IsAuthenticated= true};
+            return View(modelForView, "/Carts/Details");
         }
 
         public Response Buy()

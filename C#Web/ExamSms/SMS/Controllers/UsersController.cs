@@ -21,7 +21,7 @@ namespace SMS.Controllers
             {
                 return Redirect("/");
             }
-            return View(userLogStatus());
+            return View(new {IsAuthenticated = false });
         }
 
         [HttpPost]
@@ -38,7 +38,7 @@ namespace SMS.Controllers
 
             if (loging.userId == null)
             {
-                return View(new { ErrorMessage = loging.errors }, "/Error");
+                return View(new { ErrorMessage = loging.errors, IsAuthenticated = false }, "/Error");
             }
             SignIn(loging.userId.ToString());
             CookieCollection cookies = new CookieCollection();
@@ -57,7 +57,7 @@ namespace SMS.Controllers
             var validator = userService.ValidateRegisterForm(userPostForm);
             if (!validator.isValid)
             {
-                return Text(validator.errors);
+                return View(new { ErrorMessage = validator.errors, IsAuthenticated = false }, "/Error");
             }
             userService.CreateNewUser(userPostForm);
 
@@ -70,13 +70,5 @@ namespace SMS.Controllers
             return Redirect("/");
         }
 
-        public object userLogStatus()
-        {
-            if (User.IsAuthenticated)
-            {
-                return new { IsAuthenticated = true };
-            }
-            return new { IsAuthenticated = false };
-        }
     }
 }

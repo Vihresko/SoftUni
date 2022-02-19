@@ -20,7 +20,7 @@ namespace SMS.Controllers
             {
                 return Redirect("/");
             }
-            return View();
+            return View(new  {IsAuthenticated = true });
         }
 
         [HttpPost]
@@ -41,19 +41,10 @@ namespace SMS.Controllers
             {
                 return View(new { ErrorMessage = errors }, "/Error");
             }
-
             
-            productService.CreateProduct(productForm, User.Id);
-            return View(userLogStatus());
+            productService.CreateProduct(productForm);
+            return View(new  {IsAuthenticated = true });
         }
 
-        public object userLogStatus()
-        {
-            if (User.IsAuthenticated)
-            {
-                return new { IsAuthenticated = true };
-            }
-            return new { IsAuthenticated = false };
-        }
     }
 }

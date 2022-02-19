@@ -28,20 +28,16 @@ namespace SMS.Services
                 CartId = cart.Id
             };
             
-
             data.Users.Add(newUser);
             data.SaveChanges();
         }
 
-        static string HashPassword(string rawData)
+        private string HashPassword(string rawPassword)
         {
-            // Create a SHA256   
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                // ComputeHash - returns byte array  
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawPassword));
 
-                // Convert byte array to a string   
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)
                 {
@@ -54,7 +50,7 @@ namespace SMS.Services
         {
             bool isValid = true;
             StringBuilder errors = new StringBuilder();
-            if(user.Username.Length < USER_NAME_MIN_LENGTH || user.Username.Length > USER_NAME_MAX_LENGTH)
+            if(string.IsNullOrWhiteSpace(user.Username) || user.Username.Length < USER_NAME_MIN_LENGTH || user.Username.Length > USER_NAME_MAX_LENGTH)
             {
                 isValid = false;
                 errors.AppendLine($"Username length must be between {USER_NAME_MIN_LENGTH} and {USER_NAME_MAX_LENGTH} symbols!");
@@ -63,10 +59,10 @@ namespace SMS.Services
             if(!Regex.IsMatch(user.Email, EMAIL_REGEX_VALIDATION))
             {
                 isValid &= false;
-                errors.AppendLine($"Email must be valid");
+                errors.AppendLine($"Email must be valid!");
             }
 
-            if(user.Password.Length < PASS_MIN_LENGTH || user.Password.Length > PASS_MAX_LENGTH)
+            if(string.IsNullOrWhiteSpace(user.Password) ||user.Password.Length < PASS_MIN_LENGTH || user.Password.Length > PASS_MAX_LENGTH)
             {
                 isValid = false;
                 errors.AppendLine($"Password must be between {PASS_MIN_LENGTH} and {PASS_MAX_LENGTH} symbols!");
@@ -85,11 +81,15 @@ namespace SMS.Services
             string passWord = HashPassword(userFromPost.Password);
             string userName = userFromPost.Username;
 
-            string user = data.Users.Where(u => u.Username == userName && u.Password == passWord).Select(u => u.Id).FirstOrDefault();
+            string user = data.Users.Where(u => u.Username == userName && u.Password == passWord)
+                                    .Select(u => u.Id)
+                                    .FirstOrDefault();
+
             if(user == null)
             {
-                return (user, "Invalid authentication");
+                return (user, "Invalid authentication!");
             }
+
             return (user, "");
         }
     }
